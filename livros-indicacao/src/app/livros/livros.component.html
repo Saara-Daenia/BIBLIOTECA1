@@ -1,0 +1,33 @@
+<!-- Formulário de Login -->
+<div *ngIf="usuarioId === 1">
+    <h2>Login</h2>
+    <input [(ngModel)]="email" type="text" placeholder="Digite seu email" />
+    <input [(ngModel)]="senha" type="password" placeholder="Digite sua senha" />
+    <button (click)="login()">Login</button>
+  </div>
+  
+  <!-- Filtros de pesquisa -->
+  <div *ngIf="usuarioId !== 1">
+    <h2>Pesquisar Livros</h2>
+    <input [(ngModel)]="filtroGenero" type="text" placeholder="Filtrar por gênero" />
+    <input [(ngModel)]="filtroAutor" type="text" placeholder="Filtrar por autor" />
+    <button (click)="carregarLivrosComFiltros()">Filtrar</button>
+  </div>
+  
+  <!-- Lista de livros -->
+  <div *ngIf="livros.length > 0">
+    <div *ngFor="let livro of livros">
+      <h3>{{ livro.nome }}</h3>
+      <p>{{ livro.descricao }}</p>
+  
+      <!-- Campo de comentário -->
+      <textarea [(ngModel)]="comentario" placeholder="Deixe seu comentário"></textarea>
+      <button (click)="adicionarComentario(livro.id)">Comentar</button>
+    </div>
+  </div>
+  
+  <!-- Mensagem caso não haja livros -->
+  <div *ngIf="livros.length === 0">
+    <p>Não há livros para exibir.</p>
+  </div>
+  
